@@ -1,0 +1,116 @@
+[gd_scene load_steps=13 format=3 uid="uid://c7sdkfit1twqi"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_gk7l3"]
+[ext_resource type="FontFile" uid="uid://d1tg01t582e5b" path="res://NeonSans.woff2" id="1_grybg"]
+[ext_resource type="Shader" path="res://menu.gdshader" id="2_f6fr0"]
+[ext_resource type="Texture2D" uid="uid://cmpaoqkuvctr7" path="res://pngwing.com (2).png" id="3_hndsd"]
+[ext_resource type="Texture2D" uid="uid://cyw2l7kkooe1r" path="res://titleeeee.png" id="4_tbmto"]
+[ext_resource type="Texture2D" uid="uid://5hkdio8li3id" path="res://Play Button.png" id="5_xm4w2"]
+[ext_resource type="Texture2D" uid="uid://bdl5siwrmx2e3" path="res://Settings Button.png" id="6_xh5ni"]
+[ext_resource type="Texture2D" uid="uid://duhdbx2wuwhhd" path="res://Exit Button.png" id="6_y7do0"]
+[ext_resource type="Texture2D" uid="uid://cuhvhphce63ip" path="res://Audio Square Button.png" id="8_1fmwv"]
+[ext_resource type="AudioStream" uid="uid://c3yt0ui5xkhby" path="res://The Verdant Grove.ogg" id="9_1xg5i"]
+
+[sub_resource type="Theme" id="Theme_oxsfb"]
+default_base_scale = 1.32
+default_font = ExtResource("1_grybg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fvkd"]
+shader = ExtResource("2_f6fr0")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(0.39, 1.09)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = SubResource("Theme_oxsfb")
+script = ExtResource("1_gk7l3")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="TheVerdantGrove" type="AudioStreamPlayer" parent="AudioListener2D"]
+stream = ExtResource("9_1xg5i")
+pitch_scale = 1.24
+autoplay = true
+playback_type = 1
+parameters/looping = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -323.0
+offset_right = 1150.0
+offset_bottom = 325.0
+scale = Vector2(1.00179, 1)
+color = Color(0, 0.117168, 0.251752, 1)
+
+[node name="bubbles" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_4fvkd")
+layout_mode = 0
+offset_left = 2.0
+offset_top = -322.0
+offset_right = 1155.0
+offset_bottom = 320.0
+texture = ExtResource("3_hndsd")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -419.0
+offset_right = 1288.0
+offset_bottom = 283.0
+texture = ExtResource("4_tbmto")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(3, 4)
+layout_mode = 0
+offset_left = 418.0
+offset_top = -105.0
+offset_right = 796.0
+offset_bottom = 234.0
+alignment = 1
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(3, 3)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+focus_neighbor_top = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 11
+icon = ExtResource("5_xm4w2")
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("6_xh5ni")
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../StartButton")
+icon = ExtResource("6_y7do0")
+
+[node name="Audio" type="Button" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 240.0
+offset_right = 197.0
+offset_bottom = 318.0
+icon = ExtResource("8_1fmwv")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Audio" to="." method="_on_audio_pressed"]

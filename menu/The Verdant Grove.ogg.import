@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c3yt0ui5xkhby"
+path="res://.godot/imported/The Verdant Grove.ogg-e7b81fc8958f41707041cfa0106e4d3a.oggvorbisstr"
+
+[deps]
+
+source_file="res://menu/The Verdant Grove.ogg"
+dest_files=["res://.godot/imported/The Verdant Grove.ogg-e7b81fc8958f41707041cfa0106e4d3a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

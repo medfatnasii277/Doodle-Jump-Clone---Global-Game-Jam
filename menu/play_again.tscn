@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhk33teidffbg"]
+
+[ext_resource type="Shader" path="res://menu.gdshader" id="1_1mobl"]
+[ext_resource type="Script" path="res://play_again.gd" id="1_klon5"]
+[ext_resource type="Texture2D" uid="uid://cmpaoqkuvctr7" path="res://pngwing.com (2).png" id="2_kpx2d"]
+[ext_resource type="FontFile" uid="uid://mktsd5g4nsmf" path="res://rainyhearts.ttf" id="3_sdbyu"]
+[ext_resource type="Texture2D" uid="uid://orne2pwv2c58" path="res://aa.png" id="4_ic7pb"]
+[ext_resource type="Texture2D" uid="uid://jwdf0ujtthkv" path="res://New game Button.png" id="5_pksfm"]
+[ext_resource type="Texture2D" uid="uid://duhdbx2wuwhhd" path="res://Exit Button.png" id="6_ey6xh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfd6v"]
+shader = ExtResource("1_1mobl")
+
+[sub_resource type="Theme" id="Theme_7uk8d"]
+default_font = ExtResource("3_sdbyu")
+
+[sub_resource type="Theme" id="Theme_l6i0i"]
+default_font = ExtResource("3_sdbyu")
+
+[sub_resource type="Theme" id="Theme_60sf8"]
+default_font = ExtResource("3_sdbyu")
+
+[node name="playAgain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.39, 1.09)
+script = ExtResource("1_klon5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1467.0
+offset_bottom = 646.0
+color = Color(0.0713488, 1.15514e-06, 0.398085, 1)
+
+[node name="bubbles" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_bfd6v")
+layout_mode = 0
+offset_left = -1.0
+offset_right = 1231.0
+offset_bottom = 642.0
+texture = ExtResource("2_kpx2d")
+expand_mode = 1
+
+[node name="header" type="Label" parent="."]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 22.0
+offset_right = 893.0
+offset_bottom = 146.0
+theme = SubResource("Theme_7uk8d")
+theme_override_colors/font_color = Color(1, 0.819608, 0.145098, 1)
+theme_override_font_sizes/font_size = 105
+text = "Bubble Jump "
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 566.0
+offset_right = 596.0
+offset_bottom = 642.0
+rotation = 5.56586
+texture = ExtResource("4_ic7pb")
+expand_mode = 1
+
+[node name="PLayagain" type="Button" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 512.0
+offset_right = 384.0
+offset_bottom = 620.0
+icon = ExtResource("5_pksfm")
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 777.0
+offset_top = 514.0
+offset_right = 1085.0
+offset_bottom = 622.0
+icon = ExtResource("6_ey6xh")
+
+[node name="YourScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 181.0
+offset_right = 752.0
+offset_bottom = 275.0
+theme = SubResource("Theme_l6i0i")
+theme_override_font_sizes/font_size = 100
+text = "Your Score : 0"
+
+[node name="HiehestScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 335.0
+offset_right = 966.0
+offset_bottom = 429.0
+theme = SubResource("Theme_60sf8")
+theme_override_font_sizes/font_size = 100
+text = "Highest Score: 7076"
+
+[connection signal="pressed" from="PLayagain" to="." method="_on_p_layagain_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://dtihlls4edty3"]
+
+[ext_resource type="Script" path="res://jumpboost_neon.gd" id="1_ochrd"]
+[ext_resource type="Texture2D" uid="uid://bioagoexkdqdd" path="res://ennemy_pacMan.png" id="2_d81qb"]
+[ext_resource type="AudioStream" uid="uid://c6b6rlt3rhmw2" path="res://assets/Clouds 2/jump_boost.mp3" id="3_3jvjx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2c75"]
+atlas = ExtResource("2_d81qb")
+region = Rect2(348, 408, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqg5i"]
+atlas = ExtResource("2_d81qb")
+region = Rect2(348, 357, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apke5"]
+atlas = ExtResource("2_d81qb")
+region = Rect2(348, 306, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl4qh"]
+atlas = ExtResource("2_d81qb")
+region = Rect2(348, 255, 58, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whitu"]
+atlas = ExtResource("2_d81qb")
+region = Rect2(348, 204, 58, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6m7ls"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2c75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqg5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apke5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl4qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whitu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsq2x"]
+size = Vector2(55, 71)
+
+[sub_resource type="Animation" id="Animation_s4oa1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(86.5, 141)]
+}
+
+[sub_resource type="Animation" id="Animation_ie0c0"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(86.5, 141), Vector2(86.5, 143.24), Vector2(86.5, 141)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xnxed"]
+_data = {
+"RESET": SubResource("Animation_s4oa1"),
+"idle": SubResource("Animation_ie0c0")
+}
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_ochrd")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(86.5, 141)
+scale = Vector2(0.991872, 2.54)
+sprite_frames = SubResource("SpriteFrames_6m7ls")
+autoplay = "default"
+frame_progress = 0.531511
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(90.5, 146.5)
+shape = SubResource("RectangleShape2D_jsq2x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3jvjx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xnxed")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmqo6aj8y8ggk"]
+
+[ext_resource type="FontFile" uid="uid://dapucreqswegv" path="res://rainyhearts.ttf" id="1_al2w5"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="2_ss4fw"]
+[ext_resource type="Shader" path="res://menu.gdshader" id="2_yy1u2"]
+[ext_resource type="Texture2D" uid="uid://dse34qskprvak" path="res://pngwing.com (2).png" id="3_1bsog"]
+[ext_resource type="Texture2D" uid="uid://bpb734vekmy48" path="res://Resume Button.png" id="4_377pr"]
+[ext_resource type="FontFile" uid="uid://cew2i5no4yxoy" path="res://NeonSans.woff" id="5_vpnp5"]
+[ext_resource type="Texture2D" uid="uid://cjtfi0sm88lam" path="res://Menu Button.png" id="6_eghkt"]
+[ext_resource type="Texture2D" uid="uid://jptmp4e1182h" path="res://aa.png" id="7_ioe4c"]
+[ext_resource type="AudioStream" uid="uid://ccuh061lsv5ev" path="res://Mingle Game Song Round and Round Lyric Video  Squid Game_ Season 2  Netflix.mp3" id="10_m2avi"]
+
+[sub_resource type="Theme" id="Theme_5nanq"]
+default_font = ExtResource("1_al2w5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5ajb"]
+shader = ExtResource("2_yy1u2")
+
+[sub_resource type="Theme" id="Theme_4j3vu"]
+default_font = ExtResource("5_vpnp5")
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.38, 1.08)
+theme = SubResource("Theme_5nanq")
+script = ExtResource("2_ss4fw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 646.0
+color = Color(0.0713488, 1.15514e-06, 0.398085, 1)
+
+[node name="bubbles" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_b5ajb")
+layout_mode = 0
+offset_left = -1.0
+offset_right = 1150.0
+offset_bottom = 642.0
+texture = ExtResource("3_1bsog")
+expand_mode = 1
+
+[node name="header" type="Label" parent="."]
+layout_mode = 0
+offset_left = 268.421
+offset_top = 28.7037
+offset_right = 991.421
+offset_bottom = 161.704
+theme_override_colors/font_color = Color(1, 0.819608, 0.145098, 1)
+theme_override_font_sizes/font_size = 141
+text = "Bubble Jump "
+
+[node name="subheader" type="Label" parent="."]
+light_mask = 903
+layout_mode = 0
+offset_left = 434.0
+offset_top = 280.0
+offset_right = 784.0
+offset_bottom = 397.0
+theme = SubResource("Theme_4j3vu")
+theme_override_colors/font_color = Color(0.792442, 0, 0.21486, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Paused
+"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 202.0
+offset_right = 213.0
+offset_bottom = 278.0
+texture = ExtResource("7_ioe4c")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 571.053
+offset_top = 476.852
+offset_right = 653.053
+offset_bottom = 552.852
+rotation = 0.278839
+texture = ExtResource("7_ioe4c")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 914.0
+offset_top = 343.0
+offset_right = 996.0
+offset_bottom = 419.0
+rotation = 5.56586
+texture = ExtResource("7_ioe4c")
+expand_mode = 1
+
+[node name="resume" type="Button" parent="."]
+layout_mode = 0
+offset_left = 121.053
+offset_top = 485.185
+offset_right = 379.053
+offset_bottom = 575.185
+icon = ExtResource("4_377pr")
+
+[node name="main" type="Button" parent="."]
+layout_mode = 0
+offset_left = 778.947
+offset_top = 486.111
+offset_right = 1086.95
+offset_bottom = 592.111
+icon = ExtResource("6_eghkt")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="MingleGameSongRoundAndRoundLyricVideoSquidGameSeason2Netflix" type="AudioStreamPlayer" parent="AudioListener2D"]
+stream = ExtResource("10_m2avi")
+volume_db = -16.746
+autoplay = true
+
+[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="main" to="." method="_on_main_pressed"]

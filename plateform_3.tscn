@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn1lg5vemed02"]
+
+[ext_resource type="Script" path="res://plateform_3.gd" id="1_lh0wh"]
+[ext_resource type="Texture2D" uid="uid://brlh24pomuq2o" path="res://Free-Simple-Platformer-Game-Kit-Pixel-Art8.jpg" id="2_ls87u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p71u"]
+size = Vector2(96.4285, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_meex5"]
+size = Vector2(98.2143, 2.5)
+
+[node name="Plateform3" type="StaticBody2D"]
+position = Vector2(218, 62)
+scale = Vector2(0.56, 1)
+script = ExtResource("1_lh0wh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(66.0715, 69.5)
+shape = SubResource("RectangleShape2D_5p71u")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(66.0714, 69.2865)
+scale = Vector2(0.49963, 0.347276)
+texture = ExtResource("2_ls87u")
+region_enabled = true
+region_rect = Rect2(851.75, 1071, 193.5, 65.25)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(65.1786, 57.5)
+scale = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_meex5")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

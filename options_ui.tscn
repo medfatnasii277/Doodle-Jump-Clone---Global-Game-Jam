@@ -1,0 +1,179 @@
+[gd_scene load_steps=5 format=3 uid="uid://sr4qxb436jof"]
+
+[ext_resource type="FontFile" uid="uid://dapucreqswegv" path="res://rainyhearts.ttf" id="1_dmnh8"]
+[ext_resource type="Script" path="res://options_ui.gd" id="2_2mis0"]
+[ext_resource type="Texture2D" uid="uid://bffdlv2m2eose" path="res://Return Square Button.png" id="3_alig7"]
+
+[sub_resource type="Theme" id="Theme_ohmls"]
+default_font = ExtResource("1_dmnh8")
+default_font_size = 30
+
+[node name="OptionsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ohmls")
+script = ExtResource("2_2mis0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.380392)
+self_modulate = Color(1, 1, 0.87451, 0.847059)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 819.0
+offset_bottom = 633.0
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -412.0
+offset_top = -316.5
+offset_right = 412.0
+offset_bottom = 316.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.0
+offset_top = 122.0
+offset_right = 52.0
+offset_bottom = 163.0
+grow_horizontal = 2
+text = "OPTIONS"
+
+[node name="Keyboard" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_top = 205.0
+offset_right = -78.0
+offset_bottom = 246.0
+grow_horizontal = 2
+text = "KEYBOARD"
+
+[node name="GamePad" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 109.0
+offset_top = 206.0
+offset_right = 235.0
+offset_bottom = 247.0
+grow_horizontal = 2
+text = "GAMEPAD"
+
+[node name="----" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -70.5
+offset_right = -87.0
+offset_bottom = -29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "---------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="----2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 101.0
+offset_top = 244.0
+offset_right = 238.0
+offset_bottom = 285.0
+grow_horizontal = 2
+text = "---------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="left" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -213.0
+offset_top = 299.0
+offset_right = -87.0
+offset_bottom = 340.0
+grow_horizontal = 2
+text = "Left :   <-"
+
+[node name="Right" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_top = 366.0
+offset_right = -88.0
+offset_bottom = 407.0
+grow_horizontal = 2
+text = "Right : ->"
+
+[node name="shoot" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 426.0
+offset_right = -44.0
+offset_bottom = 467.0
+grow_horizontal = 2
+text = "Shoot : Space"
+
+[node name="Attack" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 109.0
+offset_top = 292.0
+offset_right = 235.0
+offset_bottom = 333.0
+grow_horizontal = 2
+text = "Attack : J"
+
+[node name="Jump" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 103.0
+offset_top = 368.0
+offset_right = 229.0
+offset_bottom = 409.0
+grow_horizontal = 2
+text = "Jump : k"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 488.5
+offset_right = 487.0
+offset_bottom = 596.5
+icon = ExtResource("3_alig7")
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

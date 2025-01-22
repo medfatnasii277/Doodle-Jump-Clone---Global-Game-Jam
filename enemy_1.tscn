@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://33elbwsmfo22"]
+
+[ext_resource type="Script" path="res://area_2d.gd" id="1_qmk45"]
+[ext_resource type="Texture2D" uid="uid://cqcw3xtg6fv5i" path="res://assets/Clouds 2/menchar_ydour-removebg-preview.png" id="2_l108w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tus8"]
+radius = 28.0179
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwug5"]
+atlas = ExtResource("2_l108w")
+region = Rect2(0, 102, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ek7"]
+atlas = ExtResource("2_l108w")
+region = Rect2(76, 102, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luqnu"]
+atlas = ExtResource("2_l108w")
+region = Rect2(152, 102, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48jf7"]
+atlas = ExtResource("2_l108w")
+region = Rect2(228, 102, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtfjb"]
+atlas = ExtResource("2_l108w")
+region = Rect2(304, 102, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7yv4"]
+atlas = ExtResource("2_l108w")
+region = Rect2(380, 102, 76, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twupg"]
+atlas = ExtResource("2_l108w")
+region = Rect2(456, 102, 76, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spc75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwug5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61ek7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luqnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48jf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtfjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7yv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twupg")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 7.0
+}]
+
+[node name="Enemy1" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_qmk45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(166, 129)
+shape = SubResource("CircleShape2D_5tus8")
+disabled = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D"]
+modulate = Color(1, 1, 1, 0.607843)
+texture_filter = 1
+position = Vector2(164, 130)
+scale = Vector2(1.18961, 1.10941)
+sprite_frames = SubResource("SpriteFrames_spc75")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame = 2
+frame_progress = 0.141514
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="Area2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="Area2D" method="_on_timer_timeout"]

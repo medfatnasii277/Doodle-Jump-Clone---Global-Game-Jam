@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://djrf3r2f2d3u0"]
+
+[ext_resource type="Script" path="res://enemy_2.gd" id="1_fa0f8"]
+[ext_resource type="Texture2D" uid="uid://bcggmh0spcpih" path="res://assets/items/bomb_expert.png" id="2_r4d7a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tus8"]
+radius = 27.0185
+
+[node name="Enemy2" type="Node2D"]
+
+[node name="Enemy2" type="Area2D" parent="."]
+script = ExtResource("1_fa0f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2"]
+position = Vector2(166, 129)
+shape = SubResource("CircleShape2D_5tus8")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2"]
+position = Vector2(166, 128)
+scale = Vector2(0.39, 0.32)
+texture = ExtResource("2_r4d7a")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Enemy2" to="Enemy2" method="_on_body_entered"]
+[connection signal="body_exited" from="Enemy2" to="Enemy2" method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="Enemy2" method="_on_timer_timeout"]

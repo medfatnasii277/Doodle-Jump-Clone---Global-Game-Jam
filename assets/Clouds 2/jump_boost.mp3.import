@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c6b6rlt3rhmw2"
+path="res://.godot/imported/jump_boost.mp3-819aa79c81773ee85a1f8f1551af8852.mp3str"
+
+[deps]
+
+source_file="res://assets/Clouds 2/jump_boost.mp3"
+dest_files=["res://.godot/imported/jump_boost.mp3-819aa79c81773ee85a1f8f1551af8852.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

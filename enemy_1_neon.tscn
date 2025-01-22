@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://ffghowmuq856"]
+
+[ext_resource type="Script" path="res://area_2d.gd" id="1_ihrt8"]
+[ext_resource type="Script" path="res://enemy_1_neon.gd" id="1_u5f8w"]
+[ext_resource type="Texture2D" uid="uid://bioagoexkdqdd" path="res://ennemy_pacMan.png" id="4_wqovx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tus8"]
+radius = 28.0179
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsbi7"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 51, 53, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov1gq"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 102, 53, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eay1x"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 153, 53, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aps05"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 204, 53, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y77rf"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 255, 53, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfopo"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 306, 53, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jqmm"]
+atlas = ExtResource("4_wqovx")
+region = Rect2(0, 357, 53, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_spc75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsbi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov1gq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eay1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aps05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y77rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfopo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jqmm")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Enemy1" type="Node2D"]
+script = ExtResource("1_u5f8w")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_ihrt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(166, 129)
+shape = SubResource("CircleShape2D_5tus8")
+disabled = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D"]
+modulate = Color(1, 1, 1, 0.607843)
+texture_filter = 1
+position = Vector2(168.466, 128.742)
+scale = Vector2(1.32918, 1.0547)
+sprite_frames = SubResource("SpriteFrames_spc75")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.861615
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="Area2D" method="_on_timer_timeout"]

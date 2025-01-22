@@ -1,0 +1,195 @@
+[gd_scene load_steps=35 format=3 uid="uid://bj8jh46g017xu"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_1xr8l"]
+[ext_resource type="PackedScene" uid="uid://brsoup0s2oiup" path="res://Player.tscn" id="1_2cavh"]
+[ext_resource type="PackedScene" uid="uid://bv4spsecl8w3n" path="res://plateform_1.tscn" id="2_iplvs"]
+[ext_resource type="Script" path="res://platform_spawner.gd" id="3_nrufe"]
+[ext_resource type="PackedScene" uid="uid://3rata38fd37d" path="res://plateform_2.tscn" id="4_nse5y"]
+[ext_resource type="PackedScene" uid="uid://cn1lg5vemed02" path="res://plateform_3.tscn" id="5_4g7gj"]
+[ext_resource type="Script" path="res://item_spawner.gd" id="6_bkj1p"]
+[ext_resource type="PackedScene" uid="uid://bt38dceabserq" path="res://plateform_1_neon.tscn" id="6_hv3gg"]
+[ext_resource type="PackedScene" uid="uid://cyjs43mdqumr4" path="res://jumpboost.tscn" id="7_gl3mn"]
+[ext_resource type="PackedScene" uid="uid://cnfllbgxh7hnf" path="res://plateform_2_neon.tscn" id="7_ig1a4"]
+[ext_resource type="PackedScene" uid="uid://mpopvytm7en" path="res://plateform_3_neon.tscn" id="8_847x4"]
+[ext_resource type="Script" path="res://enemy_spawner.gd" id="9_hp042"]
+[ext_resource type="PackedScene" uid="uid://33elbwsmfo22" path="res://enemy_1.tscn" id="10_8g2u2"]
+[ext_resource type="PackedScene" uid="uid://dtihlls4edty3" path="res://jumpboost_neon.tscn" id="11_kjs3m"]
+[ext_resource type="Script" path="res://color_rect.gd" id="12_7busl"]
+[ext_resource type="PackedScene" uid="uid://ffghowmuq856" path="res://enemy_1_neon.tscn" id="13_jorbt"]
+[ext_resource type="PackedScene" uid="uid://bqr6wexv55o7b" path="res://enemy_2_neon.tscn" id="14_08t32"]
+[ext_resource type="Script" path="res://parallax_background.gd" id="15_hpc13"]
+[ext_resource type="Texture2D" uid="uid://cl5eiwbd2jeuk" path="res://assets/clouds_1.png" id="16_ddxma"]
+[ext_resource type="Texture2D" uid="uid://cyx2j1gog075i" path="res://assets/clouds_2.png" id="17_wth7x"]
+[ext_resource type="Texture2D" uid="uid://56inlevfe6yb" path="res://assets/Clouds 2/clouds_1.png" id="18_nlm2p"]
+[ext_resource type="Texture2D" uid="uid://bs7537ckmwvm4" path="res://assets/Clouds 2/clouds_2.png" id="19_iwwcd"]
+[ext_resource type="Texture2D" uid="uid://sknh0ghxdxuh" path="res://assets/layer06_Stars_3.png" id="21_hab5g"]
+[ext_resource type="Texture2D" uid="uid://bfn8mnn1f2oh" path="res://assets/layer08_Stars_1.png" id="22_n1l67"]
+[ext_resource type="AudioStream" uid="uid://bpbd6nk4aao0k" path="res://assets/Clouds 2/T1.ogg" id="23_6qebv"]
+[ext_resource type="AudioStream" uid="uid://cp6fw66abox8j" path="res://assets/Clouds 2/T2.2.ogg" id="24_ptwqi"]
+[ext_resource type="AudioStream" uid="uid://c7humj531wfld" path="res://assets/Clouds 2/T3.ogg" id="25_4iniy"]
+[ext_resource type="PackedScene" path="res://play_again.tscn" id="25_e6doy"]
+[ext_resource type="Shader" path="res://game.gdshader" id="29_cs48w"]
+[ext_resource type="Script" path="res://fogg.gd" id="29_p7kfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45v2g"]
+size = Vector2(452, 16)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mntlk"]
+frequency = 0.0234
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p77yl"]
+width = 450
+height = 700
+seamless = true
+noise = SubResource("FastNoiseLite_mntlk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n63ye"]
+shader = ExtResource("29_cs48w")
+shader_parameter/density = 0.25
+shader_parameter/speed = Vector2(0.02, 0.01)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_p77yl")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_1xr8l")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(228, 687)
+shape = SubResource("RectangleShape2D_45v2g")
+
+[node name="PlatformSpawner" type="Node2D" parent="."]
+script = ExtResource("3_nrufe")
+platform_scenes = [ExtResource("2_iplvs"), ExtResource("4_nse5y"), ExtResource("5_4g7gj"), ExtResource("6_hv3gg"), ExtResource("7_ig1a4"), ExtResource("8_847x4")]
+
+[node name="ItemSpawner" type="Node2D" parent="."]
+script = ExtResource("6_bkj1p")
+spawnable_scenes = [ExtResource("7_gl3mn"), ExtResource("11_kjs3m")]
+spawn_chance = 0.3
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("9_hp042")
+enemy_scenes = [ExtResource("10_8g2u2"), ExtResource("13_jorbt"), ExtResource("14_08t32")]
+spawn_chance = 0.4
+platform_scenes = [ExtResource("2_iplvs"), ExtResource("4_nse5y"), ExtResource("5_4g7gj")]
+
+[node name="Player" parent="." instance=ExtResource("1_2cavh")]
+
+[node name="Plateform1" parent="." instance=ExtResource("2_iplvs")]
+position = Vector2(310, 596)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("15_hpc13")
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+z_index = -1
+texture_repeat = 2
+offset_top = -98760.0
+offset_right = 500.0
+offset_bottom = 947.0
+color = Color(0.769335, 0.826776, 0.955401, 1)
+script = ExtResource("12_7busl")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(0, 700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(3.08037e-06, 0.883547, 0.893994, 1)
+position = Vector2(246.5, 505)
+scale = Vector2(0.259896, 0.924074)
+texture = ExtResource("16_ddxma")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(0, 700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+modulate = Color(0, 0.882353, 0.894118, 1)
+position = Vector2(1, 113)
+scale = Vector2(0.261458, 0.648148)
+texture = ExtResource("17_wth7x")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_mirroring = Vector2(0, 700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+modulate = Color(0.344076, 0.344076, 0.344076, 1)
+position = Vector2(248.5, 473)
+scale = Vector2(0.263021, 0.875926)
+texture = ExtResource("18_nlm2p")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_mirroring = Vector2(0, 700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+modulate = Color(0.345098, 0.345098, 0.345098, 1)
+position = Vector2(250, 468)
+scale = Vector2(0.260417, 0.881481)
+texture = ExtResource("19_iwwcd")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(19, 0)
+motion_scale = Vector2(0.43, 0.43)
+motion_mirroring = Vector2(0, 700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+modulate = Color(0.301961, 0.658824, 1, 1)
+position = Vector2(263.917, 476)
+scale = Vector2(0.257379, 0.87963)
+texture = ExtResource("21_hab5g")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(0, 700)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+self_modulate = Color(0.356863, 0.643137, 1, 0.721569)
+position = Vector2(250, 356)
+scale = Vector2(0.259375, 0.637037)
+texture = ExtResource("22_n1l67")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_6qebv")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_ptwqi")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_4iniy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="playAgain" parent="." instance=ExtResource("25_e6doy")]
+visible = false
+
+[node name="fogg" type="ParallaxBackground" parent="."]
+layer = 2
+scroll_ignore_camera_zoom = true
+script = ExtResource("29_p7kfk")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="fogg"]
+motion_mirroring = Vector2(450, 700)
+
+[node name="ColorRect" type="ColorRect" parent="fogg/ParallaxLayer"]
+material = SubResource("ShaderMaterial_n63ye")
+offset_right = 450.0
+offset_bottom = 700.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+offset_right = 74.0
+offset_bottom = 23.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 50
+direction = Vector2(1.55, 20)
+gravity = Vector2(10, 980)
+scale_amount_min = 0.0
+scale_amount_max = 12.82

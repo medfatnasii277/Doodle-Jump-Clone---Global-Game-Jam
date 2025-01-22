@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv4spsecl8w3n"]
+
+[ext_resource type="Script" path="res://plateform_1.gd" id="1_5oygm"]
+[ext_resource type="Texture2D" uid="uid://c36we2xtodi0f" path="res://assets/Assets_City.png" id="2_i1824"]
+[ext_resource type="AudioStream" uid="uid://c8padknld8jh2" path="res://Pop Sound Effects (Copyright Free)-[AudioTrimmer.com].mp3" id="3_dgkng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p71u"]
+size = Vector2(130.5, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mka33"]
+size = Vector2(128, 9)
+
+[node name="Plateform1" type="StaticBody2D"]
+collision_mask = 4
+script = ExtResource("1_5oygm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 58.5)
+shape = SubResource("RectangleShape2D_5p71u")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-0.250002, 58.5605)
+scale = Vector2(2.67708, 1.81315)
+texture = ExtResource("2_i1824")
+region_enabled = true
+region_rect = Rect2(31.6405, 63.7975, 48.7901, 6.91358)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 52.5)
+shape = SubResource("RectangleShape2D_mka33")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dgkng")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

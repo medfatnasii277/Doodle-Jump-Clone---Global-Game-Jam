@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cp6fw66abox8j"
+path="res://.godot/imported/T2.2.ogg-cb7efa0b60a5bc032adbc69b9e0791c2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Clouds 2/T2.2.ogg"
+dest_files=["res://.godot/imported/T2.2.ogg-cb7efa0b60a5bc032adbc69b9e0791c2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
